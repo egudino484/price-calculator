@@ -145,4 +145,19 @@ class PriceCalculatorApplicationTests {
 
     }
 
+    @Test
+    public void testProductNotFound() throws URISyntaxException {
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/product-price/get-price?product_id=132&brand_id=1&date=2020-06-16-21.00.00";
+        URI uri = new URI(baseUrl);
+
+        ResponseEntity<PriceResponse> result = this.restTemplate.getForEntity(uri, PriceResponse.class);
+
+
+        Assertions.assertEquals(404, result.getStatusCode().value());
+
+
+    }
+
+
 }
